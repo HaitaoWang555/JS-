@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+  margin: 0;
+  padding: 0;
+}
+.modal{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: gray;
+}
+.active{
+  display: block;
+}
+.modal-ct {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 400px;
+  background-color:white;
+  border-radius: 3px;
+}
+.modal-ct .content{
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  padding: 20px 10px;
+}
+.modal-ct header{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+.modal-ct header span{
+  margin-left: 290px;
+}
+.modal-ct footer {
+  margin: 10px;
+  margin-left: 300px; 
+}
+.modal-ct footer span{
+  padding-left: 10px;  
+}
+.modal-ct span {
+ cursor: pointer;
+}
+	</style>
+</head>
+<body>
+<div class="btn-group">
+  <button id="btn">点我</button>
+</div>
+<div class="modal">
+  <div class="modal-ct">
+    <header>
+      <h3>这是标题<span class="close">X</span></h3>
+    </header>
+    <div class="content">
+      <p>这是内容</p>
+      <p>这是内容</p>
+    </div>
+    <footer>
+      <span class="cancel">取消</span><span>确定</span>
+    </footer>
+  </div>
+</div>
+	<script>
+		var btn = document.querySelector('#btn')
+    madal = document.querySelector('.modal')
+    ct = document.querySelector('.modal-ct')
+    close = document.querySelector('.close')
+    cancel = document.querySelector('.cancel')
+
+    btn.addEventListener('click',function(){
+    	madal.classList.add('active')
+    })
+    close.addEventListener('click',function(){
+    	madal.classList.remove('active')
+    })
+    cancel.addEventListener('click',function(){
+    	madal.classList.remove('active')
+    })
+    madal.addEventListener('click',function(){
+    	madal.classList.remove('active')
+    })
+    ct.addEventListener('click',function(e){
+    	e.stopPropagation()
+    })
+	</script>
+</body>
+</html>

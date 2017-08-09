@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script>
+
+Math.random()
+/*从0到1的随机数*/
+
+Math.random()*10
+/*从0到10的随机数*/
+
+function random(a,b) {
+	return a + Math.floor(Math.random()*(b-a))
+}
+random(0,2)
+/*[a,b)整数随机数*/
+
+var arr = []
+for (i = 0;i<20;i++){
+	arr.push(random(0,10))
+}
+console.log(arr)
+/*创建一个[0,10)的随机整数数组数组个数有i个*/
+function random(a,b) {
+	return a + Math.floor(Math.random()*(b-a))
+}
+function randomStr(len){
+	var dict = "0123456789zxcvbnmlkjhgfdsaqwertyuiop"
+	var str = ''
+	for(i = 0;i < len;i++){
+		str += dict[random(0,36)]
+	}
+	return str
+}
+randomStr(5)
+/* 创建len长度的随机用户名*/
+
+function random(a,b){
+	return a + Math.floor(Math.random()*(b-a))
+}
+function randomIP(len){
+var arr = []
+for(i=0;i<4;i++){
+	arr.push(random(0,256))
+}
+	return arr.join('.')
+}
+/*创建随机IP地址*/
+
+function random(a,b){
+	return a + Math.floor(Math.random()*(b-a))
+}
+var dict = "0123456789abcdef"
+function randomC(len){
+var str = ''
+for(i=0;i<6;i++){
+	str += dict[random(0,16)]
+}
+	return '#'+ str
+}
+randomC()
+/*随机颜色*/
+
+		
+	</script>
+</body>
+</html>

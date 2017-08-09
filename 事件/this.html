@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="box">
+		<button>click me</button>
+	</div>
+	<script>
+		var button = document.querySelector('button')
+		var box = document.querySelector('.box')
+		button.addEventListener('click',function(e){
+			console.log(this)
+			console.log(this.innerText)
+			console.log(e.target)// 事件的触发元素
+		})
+		box.addEventListener('click',function(e){
+			console.log(this)
+			console.log(this.innerText)
+			console.log(e.target)
+		})
+	</script>
+</body>
+</html>

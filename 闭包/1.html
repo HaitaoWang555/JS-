@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+//1.下面的代码输出多少？修改代码让 fnArri 输出 i。使用 两种以上的方法
+    var fnArr = [];
+    for (var i = 0; i < 10; i ++) {
+/*
+        !function(i){
+            fnArr[i] = function(){
+                return i
+            }
+        }(i)
+*/      
+        fnArr[i] = function(i){
+            return function(){
+                return i
+            }
+        }(i)
+    }
+    console.log( fnArr[3]())
+ //2. 封装一个汽车对象，可以通过如下方式获取汽车状态
+
+var Car = (function(){
+   var speed = 0;
+   function setSpeed(s){
+       speed = s
+   } 
+   function getSpeed(){
+   	console.log(speed)
+   }
+   function accelerate(){
+   	speed += 10
+   }
+   function decelerate(){
+   	speed -= 10
+   }
+   function getStatus(){
+   	if(speed === 0){
+   		console.log("stop")
+   	}else{
+   		console.log("running")
+   	}
+   }
+   return {
+      setSpeed: setSpeed,
+      getSpeed: getSpeed,
+      accelerate: accelerate,
+      decelerate: decelerate,
+      getStatus: getStatus
+   }
+})()
+Car.setSpeed(30);
+Car.getSpeed(); //30
+Car.accelerate();         // 加速
+Car.getSpeed(); //40;
+Car.decelerate();         // 减速
+Car.decelerate();
+Car.getSpeed(); //20
+Car.getStatus(); // 'running';  // 状态
+Car.decelerate(); 
+Car.decelerate();
+Car.getStatus();  //'stop';
+//Car.speed;  //error
+//3.下面这段代码输出结果是? 为什么?
+var a = 1;
+setTimeout(function(){
+    a = 2;
+    console.log(a);// 2
+}, 0);
+var a ;
+console.log(a);// 1
+a = 3;
+console.log(a);// 3
+// 1 , 3 , 2
+// setTimeout()将会在当前代码执行结束后执行
+
+// 4.下面这段代码输出结果是? 为什么?
+var flag = true;
+setTimeout(function(){
+    flag = false;
+},0)
+while(flag){}  //先执行此循环语句 没有退出循环条件 故不会执行后面语句
+console.log("1");
+
+//5. 下面这段代码输出？如何输出delayer: 0, delayer:1...（使用闭包来实现）
+
+for(var i=0;i<5;i++){
+    setTimeout(function(){
+         console.log('delayer:' + i );  5次delayer:5
+    }, 0);
+    console.log(i); 0 1 2 3 4
+}
+
+for(var i=0;i<5;i++){
+   !function(i){
+   	setTimeout(function(){
+         console.log('delayer:' + i );
+    }, 0)
+   }(i)
+ }
+var element = document.querySelector('#logo') 
+function trueStyle(element,pseduoElement){
+    //IE不支持window.getComputedStyle()，支持element.currentStyle();
+	return element.currentStyle ? element.currentStyle : window.getComputedStyle(element,pseduoElement);
+}
+let trueWidth = trueStyle(element).width;
+let trueHeight = trueStyle(element).height;
+
+
+
+
+
+
+	</script>
+</body>
+</html>

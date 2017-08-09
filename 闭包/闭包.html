@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<h2>闭包</h2>
+<p>变量的作用域无非就是两种：全局变量和局部变量。
+Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。另一方面，在函数外部自然无法读取函数内的局部变量。函数内部声明变量的时候，一定要使用var命令。如果不用的话，你实际上声明了一个全局变量！</p>
+<p>闭包就是能够读取其他函数内部变量的函数。
+由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成"定义在一个函数内部的函数"。所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁。</p>
+<p>闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。</p>
+<h2>var作用域</h2>
+<pre>
+	var a  //第一个
+	function f1(){
+		var a  //第二个
+	
+		function f2(){
+		var a  //第三个
+		f3()
+		a = 1   // 就近原则 赋值给f2()下的a
+		}
+	}
+	function f3(){
+	a = 2  //  词法作用域   赋值给第一个var a  与f3()是否执行无关
+	}
+	// 这几个 var a 为同名的不同变量
+</pre>
+<h2>用立即执行函数 去除全局变量 避免冲突</h2>
+<pre>
+	function f1(){
+	var a          // 把var a移到函数里 a便不是全局变量了
+	a = 1
+	console.log(a)
+	}
+	f1()
+	// 但现在f1()是全局变量
+	!function(){
+	var a 
+	a = 1
+	console.log(a)
+	}()   // 这样便没有全局变量了
+
+	var a = 100
+	!function(a){
+	console.log(a)
+	}(a)  // 这个a为外面的a   将值赋给立即执行函数里的a  输出100 立即执行函数的传参 第一个参数
+</pre>
+<ul>
+	<li>选项1</li>
+	<li>选项2</li>
+	<li>选项3</li>
+	<li>选项4</li>
+	<li>选项5</li>
+	<li>选项6</li>
+</ul>
+<script>
+var items
+var i
+items = document.querySelectorAll('li')
+for( i = 0; i < items.length; i++){
+
+/*
+	items[i].onclick = function(i){
+		return function(){
+		console.log(i)
+		}
+	}(i)
+*/	
+	!function(i){
+		items[i].onclick = function(){
+			console.log(i)
+		}
+	}(i)
+
+}
+
+
+
+
+</script>
+</body>
+</html>

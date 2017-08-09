@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="wrap">
+		<button id="btn">点我</button>
+		<button id="cancel">去掉</button>		
+	</div>
+	<ul id="list">
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+	</ul>
+	<script>
+	// 事件的处理
+		var cancel = document.querySelector('#cancel')
+		cancel.onclick = function() {
+			console.log('heihei')
+		}
+		cancel.onclick = function() {
+			console.log('haha')  //覆盖
+		}
+		var handler = function(){
+			console.log('hello')
+		}
+		cancel.addEventListener('click',handler)
+		cancel.addEventListener('click',function(){
+			console.log('word')
+		})
+		cancel.removeEventListener('click', handler);
+		</script>
+</body>
+</html>

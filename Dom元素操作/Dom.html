@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var ct = document.getElementById('ct') // 返回匹配指定ID属性的元素节点。如果没有发现匹配的节点，则返回null
+		console.log(ct.innerHTML) //返回元素的HTML结构
+		console.log(ct.innerText) //返回元素内包含的文本内容
+
+		var title = document.getElementsByClassName('title') // 匹配class属性
+		console.log(title)
+
+		document.getElementsByTagName('a') //匹配所有指定标签的元素 a链接
+
+		document.querySelector('.title') //返回匹配指定的CSS选择器的元素节点。如果有多个节点满足匹配条件，则返回第一个匹配的节点.无法选中CSS伪元素
+		document.querySelectorAll('.title') //回匹配指定的CSS选择器的所有节点
+
+		var node = document.createElement('img')//用来生成HTML元素节点
+		createTextNode('')//生成文本节点
+		node.setAttribute('src','地址')// 设置属性
+		ct.appendChild(node)  //在元素末尾添加元素
+		node.getAttribute('src') //获取元素的attribute值
+		node.removeAttribute('src') //删除元素属性
+
+		node.classList.add('active') //添加 class= 'active'
+		node.classList.remove('active') // 删除
+		node.classList.contains('active') // 判断有无'active'
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

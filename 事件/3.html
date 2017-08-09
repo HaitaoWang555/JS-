@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.img-preview{
+		width: 200px;
+		height: 300px;
+		border: 1px solid;
+	}
+	.space{
+		width: 200px;
+		height: 300px;
+		border: 1px solid red;
+	}
+	</style>
+</head>
+<body>
+	<ul class="ct">
+    <li data-img="1.png">鼠标放置查看图片1</li>
+    <li data-img="2.png">鼠标放置查看图片2</li>
+    <li data-img="3.png">鼠标放置查看图片3</li>
+</ul>
+<div class="img-preview"></div>
+<script>
+	var list1 = document.querySelector('li:nth-child(1)')
+	var node1 = document.createElement('img')  //生成html元素节点
+	node1.setAttribute('src','http://upload.jianshu.io/users/upload_avatars/2170795/c54ce48bc4a8?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120')// 设置属性
+	var preview = document.querySelector('.img-preview')
+	list1.addEventListener('mouseover',function(){	
+		preview.appendChild(node1)
+	})
+	list1.addEventListener('mouseout',function(){
+		preview.removeChild(node1)
+	})
+	//
+	var list2 = document.querySelector('li:nth-child(2)')
+	var node2 = document.createElement('img')  //生成html元素节点
+	node2.setAttribute('src','http://cdn2.jianshu.io/assets/web/logo-58fd04f6f0de908401aa561cda6a0688.png')// 设置属性
+	list2.addEventListener('mouseover',function(){
+		preview.appendChild(node2)
+	})
+	list2.addEventListener('mouseout',function(){
+		preview.removeChild(node2)
+	})	
+	//
+	var list3 = document.querySelector('li:nth-child(3)')
+	var node3 = document.createElement('img')  //生成html元素节点
+	node3.setAttribute('src','http://upload.jianshu.io/collections/images/229031/%E7%AE%80%E5%8C%96%E7%89%88.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120')// 设置属性
+	list3.addEventListener('mouseover',function(){
+		preview.appendChild(node3)
+	})
+	list3.addEventListener('mouseout',function(){
+		preview.removeChild(node3)
+	})		
+</script>
+</body>
+</html>

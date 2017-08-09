@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8"/>
+    <title>
+      加载更多
+    </title>
+    <style>
+      ul,li{
+      margin: 0;
+      padding: 0
+    }
+    #ct li{
+      list-style:none;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-top: 10px;
+      cursor:pointer;
+    }
+    #load-more{
+      display: block;
+      margin: 10px auto;
+      text-align: center;
+      cursor: pointer;
+    }
+    #load-more img{
+      width: 40px;
+      height: 40px;
+    }
+    .btn{
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      width: 80px;
+      border: 1px solid #E27272;
+      border-radius: 3px;
+      text-align: center;
+      text-decoration: none;
+      color: #E27272;
+    }
+    .btn:hover{
+      background: green;
+      color: #fff;
+    }
+      </style>
+  </head>
+  <body>
+    <ul id="ct">
+    </ul>
+    <a id="load-more" class="btn" href="#">
+      加载更多
+    </a>
+  </body>
+
+  <script>
+  var btn = document.querySelector('#load-more')   // 声明
+  var ct = document.querySelector('#ct')      //  声明
+  var pageIndex = 0    // 实现每次点击自动加5项
+  var isDateArrive = true  // 阻止用户重复点击 声明个变量
+  btn.addEventListener('click', function(e){      // 事件的触发
+  	e.preventDefault()   //  实现点击后页面不再返回顶部 取消默认事件
+  	if(!isDateArrive){
+  		return 
+  	}   //  如果没有收到数据 就不往下执行
+
+  	var xhr = new XMLHttpRequest()  // 声明 （ajax第一）
+  	xhr.onreadystatechange = function(){    // （ajax第二）
+  		if(xhr.readyState === 4){
+				if(xhr.status === 200 || xhr.status === 304){  //（ajax第三）
+  			var results = JSON.parse(xhr.responseText) // 与后端约定好返回的JSON格式字符串
+  			var fragment = document.createDocumentFragment()  // 建立空白文档片段
+  			for(var i = 0;i < results.length;i++){
+  				var node = document.createElement('li')   // 生成html节点
+  				node.innerText = results[i]            //  赋值
+  				fragment.appendChild(node)           // 在空白文档末尾添加节点
+  			}
+  			ct.appendChild(fragment)              // ct 末尾加 li 节点
+  			pageIndex += 5    // 实现每次点击自动加5项
+  		}else{
+  			alert("出错了")
+  		}
+  		isDateArrive = true  // 数据已发送
+  		}
+  	}
+  	xhr.open('get', '/load-more?index='+pageIndex+'&length=5',true) // 配置参数
+  	xhr.send()	//发送
+  	isDateArrive = false  //
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</html>
