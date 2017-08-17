@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>懒加载效果预览</title>
+	<script src="https://cdn.bootcss.com/jquery/2.2.1/jquery.js"></script>
+	<style>
+    ul,li{
+      list-style:none;
+    }
+    .container{
+      width: 600px;
+      margin: 0 auto;
+    }
+    .container li{
+      float: left;
+      margin: 10px 10px;
+    }
+    .container li img{
+      width: 240px;
+      height: 180px;
+    }
+	</style>
+</head>
+<body>
+	<ul class="container">
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景1.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景2.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景3.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景4.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景5.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景6.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景7.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景8.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景9.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景10.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景11.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景12.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景13.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景14.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景15.jpg" alt=""></a></li>
+		<li><a href=""><img src="img/loading.gif" data-src="img/风景16.jpg" alt=""></a></li>
+	</ul>
+	<script>
+	// 鼠标滚动触发函数，当图片位置在窗口中显示 将真实地址赋给src
+		lazyRender ()
+		var clock  // 最后一次滚动才触发事件
+		$(window).on('scroll',function(){
+			if(clock){
+				clearTimeout(clock)
+			}
+			clock = setTimeout(function(){
+				lazyRender ()
+			},500)
+			
+		})
+
+		function lazyRender (){
+			$('.container img').each(function(){
+			  if(checkShow($(this)) && !isLoad($(this))){
+					loadIng($(this))
+				}
+			})
+		}
+		function checkShow($img){   // 每一个img是否出现在窗口中
+			var scrollTop = $(window).scrollTop()
+			var windowHeight = $(window).height()
+			var offsetTop = $img.offset().top
+			if (offsetTop < scrollTop + windowHeight && offsetTop > scrollTop){
+				return true
+			}
+			return false
+		}
+		function isLoad($img){
+			return $img.attr('data-src') === $img.attr('src')
+		}
+		function loadIng($img){
+			$img.attr('src',$img.attr('data-src'))
+		}
+	</script>
+</body>
+</html>
