@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播</title>
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.js"></script>
+	<style>
+	body,ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none; 
+	}
+	.clear:after{
+	  content: '';
+	  display: block;
+	  clear: both;
+	}
+	.img-ct img{
+	  width: 200px;
+	  height: 150px;
+	}
+	.img-ct li{
+	   float: left;
+	}
+	.box{
+	  width: 200px;
+	  height: 150px;
+	  overflow: hidden;
+	  position: relative;
+	}
+	.img-ct{
+		position: absolute;
+	}
+	.pre,.next{
+	  width: 20px;
+	  height: 20px;
+	  border: 1px solid white;
+	  border-radius: 50%;
+	  position: absolute;
+	  text-decoration: none;
+	  line-height: 20px;
+	  text-align: center;
+	  top: 50%;
+	  margin-top: -10px;
+	  color: white;
+	}
+	.pre{
+	  left: 5px;
+	}
+	.next{
+	  right: 5px;
+	}
+	.bullet li{
+	  width: 20px;
+	  height: 5px;
+	  border: 1px solid white;
+	  border-radius: 3px;
+	  float: left;
+	  margin-left:5px ;
+	  cursor: pointer;
+	}
+	.bullet{
+	  position: absolute;
+	  width: 100%;
+	  bottom: 10px;
+	  left: 50%;
+	  margin-left: -55px
+	}	
+	.active{
+		background-color: white;
+	}
+	</style>
+</head>
+<body>
+	<div class="box">
+	<ul class="img-ct">
+		<li><a href="#"><img src="img/轮播1.jpg" alt=""></a></li>
+		<li><a href="#"><img src="img/轮播2.jpg" alt=""></a></li>
+		<li><a href="#"><img src="img/轮播3.jpg" alt=""></a></li>
+		<li><a href="#"><img src="img/轮播4.jpg" alt=""></a></li>
+	</ul>
+	<a class="pre" href="#"><</a>
+	<a class="next" href="#">></a>
+	<ul class="bullet">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	</div>
+	<script>
+	// CSS要先做好ul绝对定位 复制开头放在结尾 复制结尾放在开头 这时在用js算出ul的宽度 当右滚动至最后一图的时候，js切换成原来的第一个图，左滚动切换成原来的最后一张图
+		var $imgCt = $('.img-ct')
+		var $imgs = $('.box .img-ct>li')
+		var $bullets = $('.bullet li')
+		var isAnimate = false
+		var imgCount =  $imgs.length
+		var imgWidth = $imgs.width()
+		var pageIndex = 0
+		var $preBtn = $('.box .pre')
+		var $nextBtn = $('.box .next')
+		$imgCt.append($imgs.first().clone())
+		$imgCt.prepend($imgs.last().clone())
+		$imgCt.width((imgCount+2)*imgWidth)
+
+		$imgCt.css({left: -imgWidth})
+
+		$preBtn.click(function(){
+			playPre(1)
+		})
+		$nextBtn.click(function(){
+			playNext(1)
+		})
+
+		$bullets.click(function(){
+			var index = $(this).index()
+			if(index > pageIndex){
+				playNext(index - pageIndex)
+			}else if(index < pageIndex){
+				playPre(pageIndex - index)
+			}
+		})
+
+		function playNext(len){
+			if(isAnimate) return
+				isAnimate = true
+			$imgCt.animate({
+				left: '-='+len*imgWidth
+			},function(){
+				pageIndex += len
+				if(pageIndex ===imgCount){
+					pageIndex = 0
+					$imgCt.css({left: -imgWidth})
+				}
+				setBullet()
+				isAnimate = false
+			})
+		}
+		function playPre(len){
+			if(isAnimate) return
+				isAnimate = true
+			$imgCt.animate({
+				left: '+='+len*imgWidth
+			},function(){
+				pageIndex -= len
+				if(pageIndex < 0){
+					pageIndex = imgCount-1
+					$imgCt.css({left: -imgCount*imgWidth})
+				}
+				setBullet()
+				isAnimate = false
+			})
+		}	
+		function setBullet(){
+			$bullets.removeClass('active')
+							.eq(pageIndex)
+							.addClass('active')
+		}
+
+    autoPlay()
+    function autoPlay() {
+        clock = setInterval(function () {
+            playNext(1)
+        }, 2000)
+    }
+
+	</script>
+</body>
+</html>
