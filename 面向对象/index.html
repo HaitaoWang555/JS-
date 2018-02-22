@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .tab-ct {
+      width: 304px;
+      margin: auto;
+    }
+
+    .tab-ct li {
+      border: 1px solid;
+    }
+
+    .header>li {
+      list-style: none;
+      border: 1px solid;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .header>li:hover {
+      cursor: pointer;
+    }
+
+    .header>li:first-child {
+      border-left: 1px solid;
+    }
+
+    .clear:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .header>li {
+      float: left;
+      width: 100px;
+    }
+
+    .content>li {
+      float: left;
+      width: 302px;
+      height: 200px;
+      display: none;
+    }
+
+    .header .active {
+      background-color: rgba(128, 128, 128, 0.2);
+    }
+
+    .content .active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tab-ct">
+    <ul class="header clear">
+      <li class="active">tab1</li>
+      <li>tab2</li>
+      <li>tab3</li>
+    </ul>
+    <ul class="content clear">
+      <li class="active">ct1</li>
+      <li>ct2</li>
+      <li>ct3</li>
+    </ul>
+  </div>
+  <div class="tab-ct">
+    <ul class="header clear">
+      <li class="active">tab1</li>
+      <li>tab2</li>
+      <li>tab3</li>
+    </ul>
+    <ul class="content clear">
+      <li class="active">ct1</li>
+      <li>ct2</li>
+      <li>ct3</li>
+    </ul>
+  </div>
+  <div class="tab-ct">
+    <ul class="header clear">
+      <li class="active">tab1</li>
+      <li>tab2</li>
+      <li>tab3</li>
+    </ul>
+    <ul class="content clear">
+      <li class="active">ct1</li>
+      <li>ct2</li>
+      <li>ct3</li>
+    </ul>
+  </div>
+  <script>
+    /**/
+    // var tabs = document.querySelectorAll('.tab-ct .header>li')	// 声明
+    // var panels = document.querySelectorAll('.tab-ct .content>li')	// 声明
+    // tabs.forEach(function(tab){	// 遍历
+    // 	tab.addEventListener('click',function(){	// 触发事件
+    // 		tabs.forEach(function(node){	// 遍历
+    // 			node.classList.remove('active')	// 去除所有class='active'
+    // 		})
+    // 		this.classList.add('active')	// 鼠标点击的加class='active'
+    // 		var index = [].indexOf.call(tabs,this)	//i
+    // 		panels.forEach(function(node){
+    // 			node.classList.remove('active')
+    // 		})
+    // 		panels[index].classList.add('active')
+    // 	})
+    // })
+    /*封装*/
+    // var Tab = {
+    //   init: function () { //初始化
+    //     this.tabs = document.querySelectorAll('.tab-ct .header>li')	// 声明
+    //     this.tabHeader = document.querySelector('.tab-ct .header')	// 声明
+    //     this.panels = document.querySelectorAll('.tab-ct .content>li')	// 声明
+    //     this.bind()
+    //   },
+    //   bind: function () {
+    //     var self = this 
+    //     this.tabHeader.onclick = function(e){
+    //       if(e.target.tagName.toLowerCase() === "li"){
+    //         self.tabs.forEach(function(node) {
+    //           node.classList.remove("active")
+    //         });
+    //         var index = [].indexOf.call(self.tabs,e.target)
+    //         self.tabs[index].classList.add('active')
+    //         self.panels.forEach(function(node){
+    //           node.classList.remove('active')
+    //         })
+    //         self.panels[index].classList.add('active')
+    //       }
+    //     }
+    //   }
+    // }
+    // Tab.init()
+
+    /*构造函数*/
+    // function Tab(tabNode) {
+    //   this.init = function (tabNode) {
+    //     this.tabs = tabNode.querySelectorAll('.tab-ct .header>li')
+    //     this.panels = tabNode.querySelectorAll('.tab-ct .content>li')
+    //     this.tabHeader = tabNode.querySelector('.tab-ct .header')
+    //   }
+    //   this.bind = function () {
+    //     var self = this
+    //     self.tabHeader.onclick = function (e) {
+    //       if (e.target.tagName.toLowerCase() === 'li') {
+    //         self.tabs.forEach(function (node) {
+    //           node.classList.remove('active')
+    //         })
+    //         var index = [].indexOf.call(self.tabs, e.target)
+    //         self.panels.forEach(function (node) {
+    //           node.classList.remove('active')
+    //         })
+    //         self.panels[index].classList.add('active')
+    //       }
+    //     }
+    //   }
+    //   this.init(tabNode)
+    //   this.bind()
+    // }
+
+    /*原型*/
+    function Tab(tabNode) {
+      this.init(tabNode)
+      this.bind()
+    }
+
+    Tab.prototype.init = function (tabNode) {
+      this.tabs = tabNode.querySelectorAll('.tab-ct .header>li')
+      this.panels = tabNode.querySelectorAll('.tab-ct .content>li')
+      this.tabHeader = tabNode.querySelector('.tab-ct .header')
+    }
+    Tab.prototype.bind = function () {
+      var self = this
+      self.tabHeader.onclick = function (e) {
+        if (e.target.tagName.toLowerCase() === 'li') {
+          self.tabs.forEach(function (node) {
+            node.classList.remove('active')
+          })
+          var index = [].indexOf.call(self.tabs, e.target)
+          self.panels.forEach(function (node) {
+            node.classList.remove('active')
+          })
+          self.panels[index].classList.add('active')
+        }
+      }
+    }
+
+    var tabNode1 = document.querySelectorAll('.tab-ct')[0]
+    var tabNode2 = document.querySelectorAll('.tab-ct')[1]
+    var tabNode3 = document.querySelectorAll('.tab-ct')[2]
+
+    var tab1 = new Tab(tabNode1)
+    var tab2 = new Tab(tabNode2)
+    var tab3 = new Tab(tabNode3)
+
+  </script>
+</body>
+
+</html>
