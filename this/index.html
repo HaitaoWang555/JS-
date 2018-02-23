@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>this</title>
+</head>
+
+<body>
+  <script>
+    var a = 1
+    console.log(this)
+    console.log(this.a)
+    // 作为函数调用
+    function fn1() {
+      var a = 2
+      console.log(this)
+      console.log(this.a)
+    }
+    fn1()
+    // 内部函数
+    function fn0() {
+      function fn() {
+        console.log(this);
+      }
+      fn();
+    }
+    fn0();
+    // setTimeout、setInterval
+    document.addEventListener('click', function (e) {
+      console.log(this);
+      setTimeout(function () {
+        console.log(this);
+      }, 200);
+    }, false);
+
+    // document.addEventListener('click', function (e) {
+    //   console.log(this);
+    //   var _this = this
+    //   setTimeout(function () {
+    //     console.log(_this);
+    //   }, 200);
+    // }, false);
+
+    // document.addEventListener('click', function (e) {
+    //   console.log(this);
+    //   setTimeout(function () {
+    //     console.log(this);
+    //   }.bind(this), 200);
+    // }, false);
+
+    // 作为构造函数调用
+
+    // function Person(name) {
+    //   this.name = name;
+    //   console.log(this)
+    //   console.log(name)
+    // }
+    // Person.prototype.printName = function () {
+    //   console.log(this.name);
+    // };
+
+    // Person("123")
+    // Person.prototype.printName()
+
+    function Person(name) {
+      this.name = name;
+    }
+    Person.prototype.printName = function () {
+      console.log(this.name);
+    };
+    var p1 = new Person('Byron');
+    var p2 = new Person('Casper');
+    var p3 = new Person('Vincent');
+    p1.printName();
+    p2.printName();
+    p3.printName();
+    // new 运算符接受一个函数 F 及其参数：new F(arguments...)。这一过程分为三步：
+    // 1. 创建类的实例。这步是把一个空的对象的 __proto__ 属性设置为 F.prototype 。
+    // 2. 初始化实例。函数 F 被传入参数并调用，关键字 this 被设定为该实例。
+    // 3. 返回实例。
+
+    // 作为对象方法调用
+    var obj1 = {
+      name: 'Byron',
+      fn: function () {
+        console.log(this);
+      }
+    };
+    obj1.fn();
+    var fn2 = obj1.fn;
+    fn2(); //window.fn2()
+
+    // bind，返回一个新函数，并且使函数内部的this为传入的第一个参数
+    var fn3 = obj1.fn.bind(obj1);
+    fn3();
+
+    // call apply
+    var value = 10
+    var obj = {
+      value: 20
+    }
+    function fn4(a, b) {
+      console.log(this.value + a + b)
+    }
+    fn4(2, 3)
+    fn4.call(obj, 2, 3)
+    fn4.apply(obj, [2, 3])
+    // 取数组中最大值
+    var arr = [1, 2, 5, 3, 9]
+    console.log(Math.max(1, 2, 5, 3, 9))
+    console.log(Math.max.apply(null, arr))
+    // 
+    function joinStr() {
+      //console.log(Array.prototype.join.call(arguments,"-"))
+      //console.log(Array.prototype.join.apply(arguments,["-"]))
+      //console.log([].join.apply(arguments,["-"]))
+      var join = Array.prototype.join.bind(arguments)
+      console.log(join("-"))
+    }
+    joinStr("a", "b", "c")
+
+    // arguments
+    // 在函数调用时，会自动在该函数内部生成一个名为 arguments的隐藏对象
+    // 该对象类似于数组，可以使用[]运算符获取函数调用时传递的实参
+    // 只有函数被调用时，arguments对象才会创建，未调用时其值为null
+
+    function fn5(name, age) {
+      console.log(arguments);
+      name = 'XXX';
+      console.log(arguments);
+      arguments[1] = 30;
+      console.log(arguments);
+    }
+    fn5('Byron', 20);
+
+    // DOM对象绑定事件
+    document.addEventListener('click', function (e) {
+      console.log(this);
+      var _document = this;
+      setTimeout(function () {
+        console.log(this);
+        console.log(_document);
+      }, 200);
+    }, false);
+
+    // 三种变量
+    function ClassA() {
+      var a = 1; //私有变量，只有函数内部可以访问
+      this.b = 2; //实例变量，只有实例可以访问
+    }
+
+    ClassA.c = 3; // 静态变量，也就是属性，类型访问
+
+    console.log(a); // error
+    console.log(ClassA.b) // undefined
+    console.log(ClassA.c) //3
+
+    var classa = new ClassA();
+    console.log(classa.a);//undefined
+    console.log(classa.b);// 2
+    console.log(classa.c);//undefined 
+
+  </script>
+</body>
+
+</html>
