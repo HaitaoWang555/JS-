@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person(name, sex) {
+      this.name = name;
+      this.sex = sex;
+    }
+    Person.prototype.sayName = function () {
+      console.log("I am " + this.name)
+    }
+    var p1 = new Person("wht", "man")
+    p1.sayName();
+
+    // function Student(name, sex, age) {
+    //   //Person.bind(this)(name,sex) 得到Person的属性
+    //   Person.call(this, name, sex);
+    //   this.age = age
+    // }
+    // Student.prototype = Object.create(Person.prototype) // 得到Person的方法
+    // Student.prototype.constructor = Student // 
+    // Student.prototype.saySex = function () {
+    //   console.log("I am " + this.sex)
+    // }
+    // var s1 = new Student("clt", "woman", "25")
+    // s1.saySex()
+    // s1.sayName()
+
+    // 封装
+    function inherit(superType, subType) {
+      var _prototype = Object.create(superType.prototype);
+      _prototype.constructor = subType;
+      subType.prototype = _prototype;
+    }
+    function Student(name, sex, age) {
+      //Person.bind(this)(name,sex) 得到Person的属性
+      Person.call(this, name, sex);
+      this.age = age
+    }
+    inherit(Person,Student)
+    // 在继承函数之后写自己的方法，否则会被覆盖
+    Student.prototype.saySex = function () {
+      console.log("I am " + this.sex)
+    }
+    var s1 = new Student("clt", "woman", "25")
+    s1.saySex()
+    s1.sayName()
+  </script>
+</body>
+
+</html>
