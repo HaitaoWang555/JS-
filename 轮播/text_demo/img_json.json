@@ -1,0 +1,27 @@
+{
+    "code": 0,
+    "data": {
+        "slider": [
+            {
+                "picUrl": "http://pic.qhcshop.com/productRepertory/禾麦绿色袋装.jpg",
+                "id": 14092
+            },
+            {
+                "picUrl": "http://pic.qhcshop.com/productRepertory/鸭稻5.jpg",
+                "id": 14083
+            },
+            {               
+                "picUrl": "http://pic.qhcshop.com/productRepertory/有机5.jpg",
+                "id": 13118
+            },
+            {
+                "picUrl": "http://pic.qhcshop.com/productRepertory/祥龙绿色袋装.jpg",
+                "id": 14091
+            },
+            {               
+                "picUrl": "http://pic.qhcshop.com/productRepertory/有机5.jpg",
+                "id": 13118
+            }
+        ]
+    }
+}
