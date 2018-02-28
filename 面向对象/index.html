@@ -181,19 +181,19 @@
       this.tabHeader = tabNode.querySelector('.tab-ct .header')
     }
     Tab.prototype.bind = function () {
-      var self = this
-      self.tabHeader.onclick = function (e) {
+      this.tabHeader.onclick = function (e) {
         if (e.target.tagName.toLowerCase() === 'li') {
-          self.tabs.forEach(function (node) {
+          this.tabs.forEach(function (node) {
             node.classList.remove('active')
           })
-          var index = [].indexOf.call(self.tabs, e.target)
-          self.panels.forEach(function (node) {
+          var index = [].indexOf.call(this.tabs, e.target)
+          this.tabs[index].classList.add('active')         
+          this.panels.forEach(function (node) {
             node.classList.remove('active')
           })
-          self.panels[index].classList.add('active')
+          this.panels[index].classList.add('active')
         }
-      }
+      }.bind(this)
     }
 
     var tabNode1 = document.querySelectorAll('.tab-ct')[0]
