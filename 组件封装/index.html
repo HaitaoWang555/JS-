@@ -1,12 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>面向对象组件封装</title>
+  <style>
+    body,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .clear:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .img-ct img {
+      width: 200px;
+      height: 150px;
+    }
+
+    .img-ct li {
+      float: left;
+    }
+
+    .box {
+      width: 200px;
+      height: 150px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .img-ct {
+      position: absolute;
+    }
+
+    .pre,
+    .next {
+      width: 20px;
+      height: 20px;
+      border: 1px solid white;
+      border-radius: 50%;
+      position: absolute;
+      text-decoration: none;
+      line-height: 20px;
+      text-align: center;
+      top: 50%;
+      margin-top: -10px;
+      color: white;
+    }
+
+    .pre {
+      left: 5px;
+    }
+
+    .next {
+      right: 5px;
+    }
+
+    .bullet {
+      width: 100%;
+      position: absolute;
+      bottom: 10px;
+      text-align: center;
+    }
+
+    .bullet li {
+      width: 30px;
+      height: 5px;
+      border: 1px solid white;
+      border-radius: 3px;
+      display: inline-block;
+      cursor: pointer;
+      background-color: white;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+
+    .bullet li.active {
+      border-color: red;
+      background-color: red;
+    }
+  </style>
 </head>
+
 <body>
-  
+  <div class="box">
+    <ul class="img-ct">
+      <li>
+        <a href="#">
+          <img src="../轮播/img/轮播1.jpg" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../轮播/img/轮播2.jpg" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../轮播/img/轮播3.jpg" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../轮播/img/轮播4.jpg" alt="">
+        </a>
+      </li>
+    </ul>
+    <a class="pre" href="#"><</a>
+    <a class="next" href="#">></a>
+    <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li class="active"></li>
+      <li></li>
+    </ul>
+  </div>
 </body>
+<script>
+  function Solider(Solider,time) {
+    this.init(Solider,time)
+    this.autoPlay()
+  }
+  Solider.prototype.init = function (Solider,time) {
+    this.$imgCt = Solider.querySelector(".img-ct")
+    this.$imgs = Solider.querySelectorAll(".img-ct > li")
+    this.bullet = Solider.querySelectorAll(".bullet > li")
+    this.preButton = Solider.querySelector(".pre")
+    this.nextButton = Solider.querySelector(".next")
+    this.imgCount = this.$imgs.length
+    this.imgWidth = this.$imgCt.querySelector("li").clientWidth
+    this.pageIndex = 0
+    this.interval = time || 2000;
+
+
+    let first = this.$imgCt.firstElementChild
+    let last = this.$imgCt.lastElementChild
+    this.$imgCt.insertAdjacentHTML("afterbegin", this.domToString(last))
+    this.$imgCt.insertAdjacentHTML("beforeend", this.domToString(first))
+
+    this.$imgCt.style.width = (this.imgCount + 2) * this.imgWidth + "px"
+    this.$imgCt.style.left = -this.imgWidth + "px"
+
+    this.preButton.addEventListener("click",this.playPre.bind(this))
+    this.nextButton.addEventListener("click",this.playNext.bind(this))
+  }
+
+  Solider.prototype.domToString = function (node) {
+    let tmpNode = document.createElement('div');
+    tmpNode.appendChild(node.cloneNode(true));
+    let str = tmpNode.innerHTML;
+    tmpNode = node = null; // 解除引用，以便于垃圾回收  
+    return str;
+  }
+
+  Solider.prototype.animate = function (obj, target) {
+    clearInterval(obj.timer);
+    obj.timer = setInterval(function () {
+      let leader = obj.offsetLeft;
+      let step = (target - leader) / 2
+      step = step > 0 ? Math.ceil(step) : Math.floor(step);
+      leader = leader + step;
+      obj.style.left = leader + 'px';
+      if (leader === target) {
+        clearInterval(obj.timer);
+      }
+    }, 30);
+  }
+
+  Solider.prototype.autoPlay = function (){
+    this.timer = setInterval(this.playNext.bind(this), this.interval);
+  }
+
+  Solider.prototype.playNext = function () {
+      //先判断在加
+      if (this.pageIndex === this.imgCount) {
+          this.pageIndex = 0;
+          this.$imgCt.style.left = '0';
+      }
+      //console.log(this.pageIndex)
+      this.setBullet()
+      this.pageIndex += 1;
+      this.animate(this.$imgCt,-this.imgWidth * this.pageIndex)
+  }
+
+  Solider.prototype.playPre = function() {
+      if (this.pageIndex === 0) {
+          this.pageIndex = this.imgCount
+          this.$imgCt.style.left = -(this.pageIndex * this.imgWidth)+"px";
+      }
+      
+      this.pageIndex -= 1; 
+      this.animate(this.$imgCt,-this.pageIndex * this.imgWidth)
+      //console.log(this.pageIndex)
+      this.setBullet()
+  }
+  Solider.prototype.setBullet = function () {
+    for(let i = 0;i < this.bullet.length;i++){
+      this.bullet[i].classList.remove("active")
+      this.bullet[this.pageIndex].classList.add("active")
+    }
+    
+  }
+
+  var S1 = document.querySelector(".box")
+
+  var solider1 = new Solider(S1,1000)
+</script>
+
 </html>
