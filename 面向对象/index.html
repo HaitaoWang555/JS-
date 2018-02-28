@@ -186,8 +186,9 @@
           this.tabs.forEach(function (node) {
             node.classList.remove('active')
           })
+          e.target.classList.add('active')
           var index = [].indexOf.call(this.tabs, e.target)
-          this.tabs[index].classList.add('active')         
+          //this.tabs[index].classList.add('active')         
           this.panels.forEach(function (node) {
             node.classList.remove('active')
           })
