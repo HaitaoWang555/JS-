@@ -37,6 +37,13 @@
       position: relative;
     }
 
+    .box2 {
+      width: 200px;
+      height: 150px;
+      overflow: hidden;
+      position: relative;
+    }
+
     .img-ct {
       position: absolute;
     }
@@ -114,22 +121,56 @@
         </a>
       </li>
     </ul>
-    <a class="pre" href="#"><</a>
-    <a class="next" href="#">></a>
-    <ul class="bullet">
-      <li class="active"></li>
-      <li></li>
-      <li class="active"></li>
-      <li></li>
+    <a class="pre" href="#">
+      <</a>
+        <a class="next" href="#">></a>
+        <ul class="bullet">
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+  </div>
+  <div class="box2">
+    <ul class="img-ct">
+      <li>
+        <a href="#">
+          <img src="../轮播/img/轮播1.jpg" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../轮播/img/轮播2.jpg" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../轮播/img/轮播3.jpg" alt="">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../轮播/img/轮播4.jpg" alt="">
+        </a>
+      </li>
     </ul>
+    <a class="pre" href="#">
+      <</a>
+        <a class="next" href="#">></a>
+        <ul class="bullet">
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
   </div>
 </body>
 <script>
-  function Solider(Solider,time) {
-    this.init(Solider,time)
+  function Solider(Solider, time) {
+    this.init(Solider, time)
     this.autoPlay()
   }
-  Solider.prototype.init = function (Solider,time) {
+  Solider.prototype.init = function (Solider, time) {
     this.$imgCt = Solider.querySelector(".img-ct")
     this.$imgs = Solider.querySelectorAll(".img-ct > li")
     this.bullet = Solider.querySelectorAll(".bullet > li")
@@ -138,7 +179,8 @@
     this.imgCount = this.$imgs.length
     this.imgWidth = this.$imgCt.querySelector("li").clientWidth
     this.pageIndex = 0
-    this.interval = time || 2000;
+    this.interval = time || 2000
+    this.timer
 
 
     let first = this.$imgCt.firstElementChild
@@ -149,8 +191,16 @@
     this.$imgCt.style.width = (this.imgCount + 2) * this.imgWidth + "px"
     this.$imgCt.style.left = -this.imgWidth + "px"
 
-    this.preButton.addEventListener("click",this.playPre.bind(this))
-    this.nextButton.addEventListener("click",this.playNext.bind(this))
+    this.preButton.addEventListener("click", function(){
+      clearInterval(this.timer);
+      this.playPre()
+      this.autoPlay()
+    }.bind(this))
+    this.nextButton.addEventListener("click", function(){
+      clearInterval(this.timer);
+      this.playNext()
+      this.autoPlay()
+    }.bind(this))
   }
 
   Solider.prototype.domToString = function (node) {
@@ -175,44 +225,49 @@
     }, 30);
   }
 
-  Solider.prototype.autoPlay = function (){
+  Solider.prototype.autoPlay = function () {
     this.timer = setInterval(this.playNext.bind(this), this.interval);
   }
 
   Solider.prototype.playNext = function () {
-      //先判断在加
-      if (this.pageIndex === this.imgCount) {
-          this.pageIndex = 0;
-          this.$imgCt.style.left = '0';
-      }
-      //console.log(this.pageIndex)
-      this.setBullet()
-      this.pageIndex += 1;
-      this.animate(this.$imgCt,-this.imgWidth * this.pageIndex)
+    //先判断在加
+    if (this.pageIndex === this.imgCount) {
+      this.pageIndex = 0;
+      this.$imgCt.style.left = '0';
+    }
+    //console.log(this.pageIndex)
+    this.setBullet()
+    this.pageIndex += 1;
+    this.animate(this.$imgCt, -this.imgWidth * this.pageIndex)
   }
 
-  Solider.prototype.playPre = function() {
-      if (this.pageIndex === 0) {
-          this.pageIndex = this.imgCount
-          this.$imgCt.style.left = -(this.pageIndex * this.imgWidth)+"px";
-      }
-      
-      this.pageIndex -= 1; 
-      this.animate(this.$imgCt,-this.pageIndex * this.imgWidth)
-      //console.log(this.pageIndex)
-      this.setBullet()
+  Solider.prototype.playPre = function () {
+    if (this.pageIndex === 0) {
+      this.pageIndex = this.imgCount
+      this.$imgCt.style.left = -(this.pageIndex * this.imgWidth) + "px";
+    }
+
+    this.pageIndex -= 1;
+    this.animate(this.$imgCt, -this.pageIndex * this.imgWidth)
+    //console.log(this.pageIndex)
+    this.setBullet()
   }
   Solider.prototype.setBullet = function () {
-    for(let i = 0;i < this.bullet.length;i++){
+    for (let i = 0; i < this.bullet.length; i++) {
       this.bullet[i].classList.remove("active")
       this.bullet[this.pageIndex].classList.add("active")
     }
-    
+
   }
 
   var S1 = document.querySelector(".box")
 
-  var solider1 = new Solider(S1,1000)
+  var S2 = document.querySelector(".box2")
+
+  var solider1 = new Solider(S1, 1000)
+
+  var solider2 = new Solider(S2, 3000)
+</script>
 </script>
 
 </html>
