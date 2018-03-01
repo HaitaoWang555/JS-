@@ -121,9 +121,6 @@
         </a>
       </li>
     </ul>
-    <a class="pre" href="#">
-      <</a>
-        <a class="next" href="#">></a>
         <ul class="bullet">
           <li class="active"></li>
           <li></li>
@@ -154,15 +151,14 @@
         </a>
       </li>
     </ul>
-    <a class="pre" href="#">
-      <</a>
-        <a class="next" href="#">></a>
-        <ul class="bullet">
-          <li class="active"></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+    <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <a class="pre" href="#"><</a>
+    <a class="next" href="#">></a>
   </div>
 </body>
 <script>
@@ -174,8 +170,8 @@
     this.$imgCt = Solider.querySelector(".img-ct")
     this.$imgs = Solider.querySelectorAll(".img-ct > li")
     this.bullet = Solider.querySelectorAll(".bullet > li")
-    this.preButton = Solider.querySelector(".pre")
-    this.nextButton = Solider.querySelector(".next")
+    this.preButton = Solider.querySelector(".pre") || ""
+    this.nextButton = Solider.querySelector(".next") || ""
     this.imgCount = this.$imgs.length
     this.imgWidth = this.$imgCt.querySelector("li").clientWidth
     this.pageIndex = 0
@@ -191,6 +187,14 @@
     this.$imgCt.style.width = (this.imgCount + 2) * this.imgWidth + "px"
     this.$imgCt.style.left = -this.imgWidth + "px"
 
+    if(this.preButton === ""){return}
+    else{
+      this.button()
+    }
+
+  }
+
+  Solider.prototype.button = function(){
     this.preButton.addEventListener("click", function(){
       clearInterval(this.timer);
       this.playPre()
