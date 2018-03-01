@@ -121,12 +121,12 @@
         </a>
       </li>
     </ul>
-        <ul class="bullet">
-          <li class="active"></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+    <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
   </div>
   <div class="box2">
     <ul class="img-ct">
@@ -157,120 +157,128 @@
       <li></li>
       <li></li>
     </ul>
-    <a class="pre" href="#"><</a>
-    <a class="next" href="#">></a>
+    <a class="pre" href="#">
+      <</a>
+        <a class="next" href="#">></a>
   </div>
 </body>
 <script>
-  function Solider(Solider, time) {
-    this.init(Solider, time)
-    this.autoPlay()
-  }
-  Solider.prototype.init = function (Solider, time) {
-    this.$imgCt = Solider.querySelector(".img-ct")
-    this.$imgs = Solider.querySelectorAll(".img-ct > li")
-    this.bullet = Solider.querySelectorAll(".bullet > li")
-    this.preButton = Solider.querySelector(".pre") || ""
-    this.nextButton = Solider.querySelector(".next") || ""
-    this.imgCount = this.$imgs.length
-    this.imgWidth = this.$imgCt.querySelector("li").clientWidth
-    this.pageIndex = 0
-    this.interval = time || 2000
-    this.timer
 
-
-    let first = this.$imgCt.firstElementChild
-    let last = this.$imgCt.lastElementChild
-    this.$imgCt.insertAdjacentHTML("afterbegin", this.domToString(last))
-    this.$imgCt.insertAdjacentHTML("beforeend", this.domToString(first))
-
-    this.$imgCt.style.width = (this.imgCount + 2) * this.imgWidth + "px"
-    this.$imgCt.style.left = -this.imgWidth + "px"
-
-    if(this.preButton === ""){return}
-    else{
-      this.button()
+  var Carousel = (function () {
+    function Slider(slider, time) {
+      this.init(slider, time)
+      this.autoPlay()
     }
+    Slider.prototype.init = function (slider, time) {
+      this.$imgCt = slider.querySelector(".img-ct")
+      this.$imgs = slider.querySelectorAll(".img-ct > li")
+      this.bullet = slider.querySelectorAll(".bullet > li")
+      this.preButton = slider.querySelector(".pre") || ""
+      this.nextButton = slider.querySelector(".next") || ""
+      this.imgCount = this.$imgs.length
+      this.imgWidth = this.$imgCt.querySelector("li").clientWidth
+      this.pageIndex = 0
+      this.interval = time || 2000
+      this.timer
 
-  }
 
-  Solider.prototype.button = function(){
-    this.preButton.addEventListener("click", function(){
-      clearInterval(this.timer);
-      this.playPre()
-      this.autoPlay()
-    }.bind(this))
-    this.nextButton.addEventListener("click", function(){
-      clearInterval(this.timer);
-      this.playNext()
-      this.autoPlay()
-    }.bind(this))
-  }
+      let first = this.$imgCt.firstElementChild
+      let last = this.$imgCt.lastElementChild
+      this.$imgCt.insertAdjacentHTML("afterbegin", this.domToString(last))
+      this.$imgCt.insertAdjacentHTML("beforeend", this.domToString(first))
 
-  Solider.prototype.domToString = function (node) {
-    let tmpNode = document.createElement('div');
-    tmpNode.appendChild(node.cloneNode(true));
-    let str = tmpNode.innerHTML;
-    tmpNode = node = null; // 解除引用，以便于垃圾回收  
-    return str;
-  }
+      this.$imgCt.style.width = (this.imgCount + 2) * this.imgWidth + "px"
+      this.$imgCt.style.left = -this.imgWidth + "px"
 
-  Solider.prototype.animate = function (obj, target) {
-    clearInterval(obj.timer);
-    obj.timer = setInterval(function () {
-      let leader = obj.offsetLeft;
-      let step = (target - leader) / 2
-      step = step > 0 ? Math.ceil(step) : Math.floor(step);
-      leader = leader + step;
-      obj.style.left = leader + 'px';
-      if (leader === target) {
-        clearInterval(obj.timer);
+      if (this.preButton === "") { return }
+      else {
+        this.button()
       }
-    }, 30);
-  }
 
-  Solider.prototype.autoPlay = function () {
-    this.timer = setInterval(this.playNext.bind(this), this.interval);
-  }
-
-  Solider.prototype.playNext = function () {
-    //先判断在加
-    if (this.pageIndex === this.imgCount) {
-      this.pageIndex = 0;
-      this.$imgCt.style.left = '0';
-    }
-    //console.log(this.pageIndex)
-    this.setBullet()
-    this.pageIndex += 1;
-    this.animate(this.$imgCt, -this.imgWidth * this.pageIndex)
-  }
-
-  Solider.prototype.playPre = function () {
-    if (this.pageIndex === 0) {
-      this.pageIndex = this.imgCount
-      this.$imgCt.style.left = -(this.pageIndex * this.imgWidth) + "px";
     }
 
-    this.pageIndex -= 1;
-    this.animate(this.$imgCt, -this.pageIndex * this.imgWidth)
-    //console.log(this.pageIndex)
-    this.setBullet()
-  }
-  Solider.prototype.setBullet = function () {
-    for (let i = 0; i < this.bullet.length; i++) {
-      this.bullet[i].classList.remove("active")
-      this.bullet[this.pageIndex].classList.add("active")
+    Slider.prototype.button = function () {
+      this.preButton.addEventListener("click", function () {
+        clearInterval(this.timer);
+        this.playPre()
+        this.autoPlay()
+      }.bind(this))
+      this.nextButton.addEventListener("click", function () {
+        clearInterval(this.timer);
+        this.playNext()
+        this.autoPlay()
+      }.bind(this))
     }
 
-  }
+    Slider.prototype.domToString = function (node) {
+      let tmpNode = document.createElement('div');
+      tmpNode.appendChild(node.cloneNode(true));
+      let str = tmpNode.innerHTML;
+      tmpNode = node = null; // 解除引用，以便于垃圾回收  
+      return str;
+    }
+
+    Slider.prototype.animate = function (obj, target) {
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function () {
+        let leader = obj.offsetLeft;
+        let step = (target - leader) / 2
+        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+        leader = leader + step;
+        obj.style.left = leader + 'px';
+        if (leader === target) {
+          clearInterval(obj.timer);
+        }
+      }, 30);
+    }
+
+    Slider.prototype.autoPlay = function () {
+      this.timer = setInterval(this.playNext.bind(this), this.interval);
+    }
+
+    Slider.prototype.playNext = function () {
+      //先判断在加
+      if (this.pageIndex === this.imgCount) {
+        this.pageIndex = 0;
+        this.$imgCt.style.left = '0';
+      }
+      //console.log(this.pageIndex)
+      this.setBullet()
+      this.pageIndex += 1;
+      this.animate(this.$imgCt, -this.imgWidth * this.pageIndex)
+    }
+
+    Slider.prototype.playPre = function () {
+      if (this.pageIndex === 0) {
+        this.pageIndex = this.imgCount
+        this.$imgCt.style.left = -(this.pageIndex * this.imgWidth) + "px";
+      }
+
+      this.pageIndex -= 1;
+      this.animate(this.$imgCt, -this.pageIndex * this.imgWidth)
+      //console.log(this.pageIndex)
+      this.setBullet()
+    }
+    Slider.prototype.setBullet = function () {
+      for (let i = 0; i < this.bullet.length; i++) {
+        this.bullet[i].classList.remove("active")
+        this.bullet[this.pageIndex].classList.add("active")
+      }
+
+    }
+
+    return{
+      init:function(slider,time){
+        new Slider(slider, time)
+      }
+    }
+  })()
 
   var S1 = document.querySelector(".box")
-
   var S2 = document.querySelector(".box2")
 
-  var solider1 = new Solider(S1, 1000)
-
-  var solider2 = new Solider(S2, 3000)
+  Carousel.init(S1,1000)
+  Carousel.init(S2)
 </script>
 </script>
 
