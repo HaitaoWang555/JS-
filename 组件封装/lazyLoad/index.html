@@ -195,20 +195,40 @@
       };
     }
 
+    var Exposure = (function(){
+      return {
+        init: function(target,callback){
+          new LazyLoad(target,callback)
+        }
+      }
+    })()
 
     var loadImg = document.querySelectorAll("img")
     var loadText = document.querySelectorAll(".hello") // 需要转换成伪数组要用querySelectorAll
     var lastText = document.querySelectorAll(".last")
 
-    loading = new LazyLoad(loadImg, function (img) {
+    // loading = new LazyLoad(loadImg, function (img) {
+    //   img.src = img.dataset.src;
+    //   img.classList.remove("lazyload");
+    // })
+    // loadText1 = new LazyLoad(loadText,function(text){
+    //   text.classList.remove("lazyload")
+    //   text.innerText = text.innerText +"说明图片都出现了"
+    // })
+    // lastText1 = new LazyLoad(lastText,function(text){
+    //   text.classList.remove("lazyload")
+    //   text.innerText = text.innerText +"别拉了"
+    // })
+
+    Exposure.init(loadImg,function (img) {
       img.src = img.dataset.src;
       img.classList.remove("lazyload");
     })
-    loadText1 = new LazyLoad(loadText,function(text){
+    Exposure.init(loadText,function(text){
       text.classList.remove("lazyload")
       text.innerText = text.innerText +"说明图片都出现了"
     })
-    lastText1 = new LazyLoad(lastText,function(text){
+    Exposure.init(lastText,function(text){
       text.classList.remove("lazyload")
       text.innerText = text.innerText +"别拉了"
     })
