@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lazyLoad</title>
+  <style>
+    ul,
+    li {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .container:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .container li {
+      float: left;
+      margin: 10px 10px;
+    }
+
+    .container li img {
+      width: 380px;
+      height: 380px;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="container">
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/7.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/10.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/12.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/13.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/14.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/15.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/16.jpg" />
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img class="lazyload" src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/blank.jpg"
+          data-src="http://cdn.jirengu.com/book.jirengu.com/img/17.jpg" />
+      </a>
+    </li>
+  </ul>
+  <p class="hello lazyload">你看到了我</p>
+  <p class="last lazyload">已将到底了</p>
+  <script>
+
+    function LazyLoad(target, callback) {
+      this.target = target
+      this.callback = callback
+      this.onscroll()
+    }
+
+    LazyLoad.prototype.onscroll = function () {
+      let onscroll = this.throttle(function () {
+        let imgs = [].slice.call(this.target) // 转换成伪数组
+        if (imgs.length === 0) {
+          return window.removeEventListener("scroll", onscroll);
+        }        
+        imgs = imgs.filter(img => img.classList.contains("lazyload"));
+        imgs.forEach(img => this.inViewport(img) && this.callback(img));
+      }.bind(this), 300)
+
+      window.addEventListener("scroll", onscroll);
+      window.dispatchEvent(new Event("scroll"));
+    }
+
+    LazyLoad.prototype.inViewport = function (img) { // 判断是否出现
+      let { top, left, right, bottom } = img.getBoundingClientRect();
+      let vpWidth = document.documentElement.clientWidth;
+      let vpHeight = document.documentElement.clientHeight;
+      return (
+        ((top > 0 && top < vpHeight) || (bottom > 0 && bottom < vpHeight)) &&
+        ((left > 0 && left < vpWidth) || (right > 0 && right < vpWidth))
+      );
+    }
+
+    LazyLoad.prototype.throttle = function (func, wait) { // 节流
+      let prev, timer;
+      return function fn() {
+        let curr = Date.now();
+        let diff = curr - prev;
+        if (!prev || diff >= wait) {
+          func();
+          prev = curr;
+        } else if (diff < wait) {
+          clearTimeout(timer);
+          timer = setTimeout(fn, wait - diff);
+        }
+      };
+    }
+
+
+    var loadImg = document.querySelectorAll("img")
+    var loadText = document.querySelectorAll(".hello") // 需要转换成伪数组要用querySelectorAll
+    var lastText = document.querySelectorAll(".last")
+
+    loading = new LazyLoad(loadImg, function (img) {
+      img.src = img.dataset.src;
+      img.classList.remove("lazyload");
+    })
+    loadText1 = new LazyLoad(loadText,function(text){
+      text.classList.remove("lazyload")
+      text.innerText = text.innerText +"说明图片都出现了"
+    })
+    lastText1 = new LazyLoad(lastText,function(text){
+      text.classList.remove("lazyload")
+      text.innerText = text.innerText +"别拉了"
+    })
+  </script>
+</body>
+
+</html>
