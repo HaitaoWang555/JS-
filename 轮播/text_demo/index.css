@@ -3,7 +3,7 @@ body,ul,li,a{
   padding: 0;
   list-style-type: none;
 }
-img{
+.big_box_position img{
 	display: block;
 	width: 100vw;
 	height:500px;
@@ -16,26 +16,26 @@ img{
 	bottom: 0;
 	background-color: rgba(172, 165, 165, 0.2);
 }
-.big_box {
+.big_box_position .big_box {
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
 }
-.big_img_list{
+.big_box_position .big_img_list{
 	display: flex;
 	overflow: hidden;
 	max-width: 100vw;
 }
-.big_img_list li {
+.big_box_position .big_img_list li {
 	display: none;
 }
-.bullet{
+.big_box_position .bullet{
   width: 100%;
   position: relative;
   top: -35px;
   text-align: center;
 }
-.bullet li{
+.big_box_position .bullet li{
   width: 30px;
   height: 8px;
   border: 1px solid white;
@@ -46,7 +46,7 @@ img{
   margin-left: 2px;
   margin-right: 2px;
 }
-.bullet li.active{
+.big_box_position .bullet li.active{
 	border-color: red;
   background-color: red;
 }
