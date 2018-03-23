@@ -1,0 +1,26 @@
+.carousel_wrap {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  #carousel {
+    display: flex;
+  }
+  #bullet{
+    position: absolute;
+    bottom: $bullet_bottom;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;  
+    >li{
+      background-color: white;
+      width: $bullet_width;
+      height: $bullet_height;
+      border-radius: 1vw;
+      margin: 0 1vw;
+    }
+    >.active{
+      background-color: red;
+    }
+  }
+}
