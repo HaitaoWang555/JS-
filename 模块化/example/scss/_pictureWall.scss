@@ -1,0 +1,17 @@
+.picture_wall{
+  
+}
+.picture_wrap {
+  width: 100%;
+  position: relative;
+  >li {
+    position: absolute;
+    width:300px;
+    margin: 10px;
+    transition: all 1s;
+    >img {
+      width: 100%;
+      display: block;
+    }
+  }
+}
