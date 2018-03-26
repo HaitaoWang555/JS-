@@ -2,65 +2,77 @@
 //模块化
 var Carousel = (function(){
 
-  var pageIndex = 0
-  var $imgCt,$imgs,$bullet,$bullets,$imgCount,imgWidth
-  var initJqVar = function(){
-    $imgCt = $('#carousel')
-    $imgs = $('#carousel > li')
-    $bullet = $('#bullet')
-    $bullets = $('#bullet li')
-    $imgCount = $imgs.length
-    imgWidth = $imgs.width()
+  function Slider(slider) {
+    this.init(slider)
+    this.autoPlay()
+    this.listenBulletClick();
   }
 
-  var initImgs = function(){
-    $imgCt.append($imgs.first().clone())
-    $imgCt.prepend($imgs.last().clone())
-    $imgCt.css({marginLeft: -imgWidth})
+
+  Slider.prototype.initVar = function(slider){
+    this.$imgCt = slider.find(".carousel")
+    this.$imgs = slider.find('.carousel > li')
+    this.$bullet = slider.find('.bullet')
+    this.$bullets = slider.find('.bullet li')
+    this.$imgCount = this.$imgs.length
+    this.imgWidth = this.$imgs.width()
+
+    this.pageIndex = 0
   }
 
-  var goNext = function(){
-    $imgCt.css({marginLeft: -imgWidth*(pageIndex+1)})
-    setBullet(pageIndex)
-    pageIndex += 1
-    if(pageIndex > $imgCount){
-      pageIndex = 1
-      $imgCt.css({marginLeft: -imgWidth})
-      setBullet(0)
+  Slider.prototype.initImgs = function(){
+    this.$imgCt.append(this.$imgs.first().clone()).bind(this)
+    this.$imgCt.prepend(this.$imgs.last().clone()).bind(this)
+    this.$imgCt.css({marginLeft: - this.imgWidth}).bind(this)
+  }
+
+  Slider.prototype.goNext = function(){
+    this.$imgCt.css({marginLeft: - this.imgWidth*(this.pageIndex+1)})
+    this.setBullet(this.pageIndex)    
+    this.pageIndex += 1
+    if(this.pageIndex > this.$imgCount){
+      this.pageIndex = 0
+      this.setBullet(0)
+      this.pageIndex = 1
+      this.$imgCt.css({marginLeft: - this.imgWidth})     
     }
   }
 
-  var setBullet = function(pageIndex){
-    $bullets.removeClass('active').eq(pageIndex).addClass("active")
+  Slider.prototype.setBullet = function(){
+    this.$bullets.removeClass('active').eq(this.pageIndex).addClass("active")
   }
 
-  var autoPlay = function(){
-    clock = setInterval(function () {
-      goNext()
-    }, 2000)
+  Slider.prototype.autoPlay = function(){
+    this.clock = setInterval(function () {
+      this.goNext()
+    }.bind(this), 2000)
   }
 
-  var listenBulletClick = function(){
-    $bullets.on("click",function(){
-      clearInterval(clock)
-      pageIndex = $(this).index()
-      goNext()
-      autoPlay()
+  Slider.prototype.listenBulletClick = function(){
+    _this = this
+    this.$bullets.on("click",function(){
+      clearInterval(_this.clock)
+      _this.pageIndex = $(this).index()
+      _this.goNext()
+      _this.autoPlay()
     })
   }
 
-  return {
-    initCarousel: function(){
-      initJqVar();
-      initImgs();
-      autoPlay();
-      listenBulletClick();
-    }
+  Slider.prototype.init = function(slider) {
+    this.initVar(slider);
+    this.initImgs();
   }
 
+  return {
+    initCarousel: function(slider){      
+      new Slider(slider)     
+    }
+  }
 })()
 
+var C1 = $(".carousel_full")
+
 $(function(){
-  Carousel.initCarousel()
+  Carousel.initCarousel(C1)
 })
 

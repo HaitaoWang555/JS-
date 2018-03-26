@@ -1,12 +1,12 @@
-.carousel_wrap {
+.carousel_full {
   width: 100vw;
   height: 100vh;
   position: relative;
   overflow: hidden;
-  #carousel {
+  .carousel {
     display: flex;
   }
-  #bullet{
+  .bullet{
     position: absolute;
     bottom: $bullet_bottom;
     left: 50%;
