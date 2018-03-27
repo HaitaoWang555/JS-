@@ -1,7 +1,7 @@
 
 function getImgs() {
   $.get(
-    "https://www.easy-mock.com/mock/5a70237883366960492d2bfb/get-banner/banner"
+    "https://www.easy-mock.com/mock/5a70237883366960492d2bfb/get-images/banner"
   )
     .then(function(data) {
       renderBanner(data.imgLinks);
