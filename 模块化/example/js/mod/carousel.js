@@ -15,8 +15,7 @@ var Carousel = (function(){
     this.$bullet = slider.find('.bullet')
     this.$bullets = slider.find('.bullet li')
     this.$imgCount = this.$imgs.length
-    this.imgWidth = this.$imgs.width()
-
+    this.imgWidth = this.$imgCt.width()
     this.pageIndex = 0
   }
 
@@ -68,6 +67,6 @@ var Carousel = (function(){
       new Slider(slider)     
     }
   }
-})()
+})()  
 
 

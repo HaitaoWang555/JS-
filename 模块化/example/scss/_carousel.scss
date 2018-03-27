@@ -1,10 +1,9 @@
 .carousel_full {
-  width: 100vw;
-  height: 100vh;
   position: relative;
   overflow: hidden;
   .carousel {
     display: flex;
+    width: $carousel_width;
   }
   .bullet{
     position: absolute;
