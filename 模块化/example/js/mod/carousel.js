@@ -70,9 +70,4 @@ var Carousel = (function(){
   }
 })()
 
-var C1 = $(".carousel_full")
-
-$(function(){
-  Carousel.initCarousel(C1)
-})
 
