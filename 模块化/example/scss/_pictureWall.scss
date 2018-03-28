@@ -1,8 +1,9 @@
-.picture_wall{
-  
+.picture_wall {
+  overflow: hidden;
 }
 .picture_wrap {
-  width: 100%;
+  width:100%;
+  margin: 0 auto;
   position: relative;
   >li {
     position: absolute;

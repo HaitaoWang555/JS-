@@ -1,12 +1,9 @@
 
-$(function(){
-  waterFull();
-})
 
-function waterFull() {
-  var colLength = parseInt($(".picture_wrap").width() / $(".picture_wrap > li").width());
+
+function waterFall() {
+  var colLength = parseInt($(".picture_wrap").width() / $(".picture_wrap > li").outerWidth(true));
   var itemArr = [];
-  var maxHeighr
   for (var i = 0; i < colLength; i++) {
     itemArr[i] = 0;
   }
@@ -21,12 +18,15 @@ function waterFull() {
   });
 
   var maxHeight = Math.max.apply(null, itemArr);
-  $(".picture_wrap").height(maxHeight)
+  var liftNum = $(window).width() - colLength * $(".picture_wrap > li").outerWidth(true)
+
+  $(".picture_wrap").height(maxHeight);
+  $(".picture_wrap").css({left:liftNum/2})
 }
 
 
 
 
 $(window).resize(function() {
-  waterFull();
+  waterFall();
 });

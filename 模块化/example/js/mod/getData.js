@@ -1,5 +1,5 @@
 
-function getImgs() {
+function getImgsBanner() {
   $.get(
     "https://www.easy-mock.com/mock/5a70237883366960492d2bfb/get-images/banner"
   )
@@ -12,7 +12,6 @@ function getImgs() {
     });
 }
 function renderBanner(items) {
-  console.log(items);
   var strs = "";
   for (var i = 0; i < items.length; i++) {
     strs = "<li>" + '<img src="' + items[i].imgUrl + '">' + "</li>";
@@ -23,6 +22,27 @@ function renderBanner(items) {
     }
   }
 }
+
+function getImgLists(){
+  $.get(
+    "https://www.easy-mock.com/mock/5a70237883366960492d2bfb/get-images/imags"
+  )
+    .then(function(data) {
+      renderPictureWall(data.imgLinks);
+    })
+    .then( () => {
+      waterFall()
+    })  
+}
+function renderPictureWall(items) {
+  var strs = "";
+  for (var i = 0; i < items.length; i++) {
+    strs = "<li>" + '<img src="' + items[i].image + '">' + "</li>";
+    $(".picture_wrap").append(strs);
+  }  
+}
 $(function(){
-  getImgs()
+  getImgsBanner();
+  getImgLists();
+  getImgLists();
 })
