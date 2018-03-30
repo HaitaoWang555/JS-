@@ -12,6 +12,7 @@ function getImgsBanner() {
     });
 }
 function renderBanner(items) {
+  $(".carousel_full").append('<ul class="carousel"></ul><ul class="bullet"></ul>')
   var strs = "";
   for (var i = 0; i < items.length; i++) {
     strs = "<li>" + '<img src="' + items[i].imgUrl + '">' + "</li>";
@@ -28,7 +29,8 @@ function getImgLists(){
     "https://www.easy-mock.com/mock/5a70237883366960492d2bfb/get-images/imags"
   )
     .then(function(data){
-      loadImg(data.imgLinks) 
+      var W1 = $('.picture_wrap')
+      Waterfall.initWaterfall(W1,data.imgLinks)
     })
 }
 function renderPictureWall(items) {

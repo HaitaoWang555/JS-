@@ -1,12 +1,8 @@
-.picture_wall {
-  overflow: hidden;
-}
+
 .picture_wrap {
   width:$picture_wrap;
   position: relative;
   >li {
-    width:300px;
-    margin: 10px;
     position: absolute;
     transition: all 1s;
     >img {

@@ -20,9 +20,9 @@ var Carousel = (function(){
   }
 
   Slider.prototype.initImgs = function(){
-    this.$imgCt.append(this.$imgs.first().clone()).bind(this)
-    this.$imgCt.prepend(this.$imgs.last().clone()).bind(this)
-    this.$imgCt.css({marginLeft: - this.imgWidth}).bind(this)
+    this.$imgCt.append(this.$imgs.first().clone())
+    this.$imgCt.prepend(this.$imgs.last().clone())
+    this.$imgCt.css({marginLeft: - this.imgWidth})
   }
 
   Slider.prototype.goNext = function(){
