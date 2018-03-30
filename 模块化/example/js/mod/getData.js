@@ -1,4 +1,9 @@
 
+$(function(){
+  getImgsBanner();
+  ScrollGet.initScrollGet($('.picture_wrap'))
+})
+
 function getImgsBanner() {
   $.get(
     "https://www.easy-mock.com/mock/5a70237883366960492d2bfb/get-images/banner"
@@ -29,8 +34,7 @@ function getImgLists(){
     "https://www.easy-mock.com/mock/5a70237883366960492d2bfb/get-images/imags"
   )
     .then(function(data){
-      var W1 = $('.picture_wrap')
-      Waterfall.initWaterfall(W1,data.imgLinks)
+      loadImg(data.imgLinks)
     })
 }
 function renderPictureWall(items) {
@@ -40,7 +44,4 @@ function renderPictureWall(items) {
     $(".picture_wrap").append(strs);
   }  
 }
-$(function(){
-  getImgsBanner();
-  getImgLists();
-})
+
