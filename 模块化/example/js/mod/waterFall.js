@@ -13,36 +13,35 @@ function loadImg(imgs){
     img.src = imgs[key].image;
     
     img.onload = function () {
-      var originHeight = img.height;
-      var originWidth = img.width;
-      var imgInfo = {
-        target: $(img),
-        height:originHeight,
-        width:originWidth
-      }
-      renderPicture(imgInfo)
+      var imgTarget = $(img)
+      renderPicture(imgTarget)
     }
   })
 }
-function renderPicture(imgInfo) {
-  console.log(imgInfo)
+function renderPicture(imgTarget) {
   var $liCt = $('<li></li>')
-  var $img = $(imgInfo.target)
+  var $img = $(imgTarget)
   $liCt.append($img);
   $(".picture_wrap").append($liCt)
-  waterfall(imgInfo)
+  waterfall(imgTarget)
 }
 
-function waterfall(imgInfo){
+function waterfall(imgTarget){
   minValue = Math.min.apply(null, itemArr);
   minIndex = itemArr.indexOf(minValue);
-  $(imgInfo.target).parents('li').css({
+  $(imgTarget).parents('li').css({
     top: itemArr[minIndex],
     left: 320 * minIndex
   });  
-  itemArr[minIndex] += $(imgInfo.target).parents('li').outerHeight(true);
+  itemArr[minIndex] += $(imgTarget).parents('li').outerHeight(true);
+  layout()
+}
+function layout(){
   var maxHeight = Math.max.apply(null, itemArr);
   var liftNum = $(window).width() - 4 * $(".picture_wrap > li").outerWidth(true)
-  $(".picture_wrap").height(maxHeight);
-  $(".picture_wrap").css({left:liftNum/2})
+  
+  $(".picture_wrap").css({
+    left:liftNum/2,
+    height:maxHeight
+  })
 }
