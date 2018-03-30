@@ -2,6 +2,7 @@
 $(function(){
   getImgsBanner();
   ScrollGet.initScrollGet($('.picture_wrap'))
+  Gotop.init($('body'))
 })
 
 function getImgsBanner() {
