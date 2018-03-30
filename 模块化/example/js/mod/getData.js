@@ -27,12 +27,9 @@ function getImgLists(){
   $.get(
     "https://www.easy-mock.com/mock/5a70237883366960492d2bfb/get-images/imags"
   )
-    .then(function(data) {
-      renderPictureWall(data.imgLinks);
+    .then(function(data){
+      loadImg(data.imgLinks) 
     })
-    .then( () => {
-      waterFall()
-    })  
 }
 function renderPictureWall(items) {
   var strs = "";
@@ -43,6 +40,5 @@ function renderPictureWall(items) {
 }
 $(function(){
   getImgsBanner();
-  getImgLists();
   getImgLists();
 })

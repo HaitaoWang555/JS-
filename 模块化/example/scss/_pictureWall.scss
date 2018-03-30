@@ -2,13 +2,12 @@
   overflow: hidden;
 }
 .picture_wrap {
-  width:100%;
-  margin: 0 auto;
+  width:$picture_wrap;
   position: relative;
   >li {
-    position: absolute;
     width:300px;
     margin: 10px;
+    position: absolute;
     transition: all 1s;
     >img {
       width: 100%;

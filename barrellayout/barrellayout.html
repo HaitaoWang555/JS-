@@ -63,18 +63,21 @@
                     height = Math.floor(Math.random() * 400 + 200);
                     urls.push('https://lorempixel.com/' + width + '/' + height + '/');
                 }
-                console.table(urls)
                 return urls
             },
             loadImg: function (nums) {
                 var nums = nums || 20
                 var imgs = this.getImgUrls(nums);
+                console.log(imgs)
                 var _this = this;
                 $.each(imgs, function (idx, url) {
                     var img = new Image();            //每一个图片都是一个对象
+                    
                     img.src = url;                  //src属性
                     img.onload = function () {
+                        
                         var originWidth = img.width;
+                        console.log(originWidth)
                         var originHeight = img.height;
                         var ratio = originWidth / originHeight;       //宽高比
                         var imgInfo = {
@@ -82,7 +85,7 @@
                             width: _this.baseHeight * ratio,         //我们希望的高度 乘以宽高比 就是对应的宽度
                             height: _this.baseHeight
                         }
-                        _this.render(imgInfo);           //每包装一张图片，渲染它
+                      //  _this.render(imgInfo);           //每包装一张图片，渲染它
                     }
                 })
             },
@@ -115,7 +118,6 @@
                         $img = $(imgInfo.target);
                     $img.height(rowHeight);
                     $imgCt.append($img);
-                    console.log($imgCt);
                     $rowCt.append($imgCt);
                 });
                 $rowCt.hide().fadeIn(1000)      //淡入效果加载

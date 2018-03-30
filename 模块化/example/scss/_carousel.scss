@@ -4,6 +4,9 @@
   .carousel {
     display: flex;
     width: $carousel_width;
+    >li{
+      width:100%;
+    }
   }
   .bullet{
     position: absolute;
