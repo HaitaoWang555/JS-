@@ -19,9 +19,7 @@ var Gotop = (function(){
 			})
 
 			this.$target.on('click',function(){
-				self.$ct.animate({
-					scrollTop:0
-				},300)
+				$('html,body').animate({ scrollTop: 0 }, 200);
 			})
     },
     createNode:function(){
