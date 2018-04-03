@@ -2,17 +2,30 @@
 //模块化
 var Carousel = (function(){
 
-  function Slider(slider) {
-    this.init(slider)
+  function Slider(slider,data) {
+    this.init(slider,data)
     this.autoPlay()
     this.listenBulletClick();
   }
 
 
   Slider.prototype.initVar = function(slider){
-    this.$imgCt = slider.find(".carousel")
-    this.$imgs = slider.find('.carousel > li')
+    slider.append('<ul class="carousel"></ul><ul class="bullet"></ul>');
+    this.$imgCt = slider.find(".carousel") 
     this.$bullet = slider.find('.bullet')
+  }
+
+  Slider.prototype.initLayout = function(slider,data) {  
+    var strs = "";
+    for (var i = 0; i < data.length; i++) {
+      strs = "<li>" + '<img src="' + data[i].imgUrl + '">' + "</li>";
+      this.$imgCt.append(strs);
+      this.$bullet.append("<li></li>");
+      if (i === 0) {
+        $(".bullet > li").addClass("active");
+      }
+    }
+    this.$imgs = slider.find('.carousel > li')
     this.$bullets = slider.find('.bullet li')
     this.$imgCount = this.$imgs.length
     this.imgWidth = this.$imgCt.width()
@@ -57,14 +70,15 @@ var Carousel = (function(){
     })
   }
 
-  Slider.prototype.init = function(slider) {
+  Slider.prototype.init = function(slider,data) {
     this.initVar(slider);
+    this.initLayout(slider,data);
     this.initImgs();
   }
 
   return {
-    initCarousel: function(slider){      
-      new Slider(slider)     
+    initCarousel: function(slider,data){      
+      new Slider(slider,data)     
     }
   }
 })()  
