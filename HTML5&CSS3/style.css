@@ -1,0 +1,112 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+.hide {
+    display: none;
+}
+.initShape {
+    width: 200px;
+    height:200px;
+    font-size: 24px;
+    background-color: #489de0;
+    color: white;    
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.circle {
+    border-radius: 50%;
+}
+.radius {
+    border-radius: 4px; 
+}
+.shadow {
+    box-shadow: 10px 10px 10px 5px grey, inset 5px 5px 5px 2px #006d9e, inset -5px -5px 5px 2px #006d9e;
+}
+.shadow p {
+    text-shadow: 5px 5px 5px black;
+}
+.contentWrap {
+    margin-top: 65px;
+    margin-bottom: 65px;
+    border: 1px solid  #006d9e;
+}
+.contentWrap h2 {
+    text-align: center;
+    color: #03A9F4;
+}
+.flexWrap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.flexWrap .initShape {
+    transition: all .5s;
+}
+.transformSkew:hover {
+    transform: skew(30deg);
+}
+.transformBig:hover{
+    transform: scale(1.2);
+}
+.transformSmall:hover {
+    transform: scale(.8);
+}
+.transformOffset:hover {
+    transform: translate(-25%,-25%);
+}
+.transformRotate:hover {
+    transform-origin: 0% 0%;
+    transform:rotate(45deg);
+}
+
+.transformWrap3D {
+    border: 1px solid gray;
+}
+
+.transform3DOffset:hover {
+    transform:perspective( 600px ) translate3d(0px,0px,-200px);
+}
+.transform3DRotate:hover {
+    transform-origin: 0% 0%;
+    transform: perspective( 600px ) rotate3d(1, 1, 1, -45deg);
+}
+
+.backgroundGradient1 {
+    background: linear-gradient(red, blue)
+}
+.backgroundGradient2 {
+    background: linear-gradient(to right,red, blue)
+}
+.backgroundGradient3 {
+    background: linear-gradient(to bottom right,red, blue)
+}
+.backgroundGradient4 {
+    background: linear-gradient(180deg,red, blue)
+}
+.backgroundGradient5 {
+    width: 800px;
+    height: 100px;
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)
+}
+.backgroundGradient6 {
+    width: 500px;
+    background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+}
+.backgroundGradient7 {
+    border-radius: 50%;
+    background: radial-gradient(black,white);
+}
+.backgroundGradient8 {
+    border-radius: 50%;
+    background: radial-gradient(black 20%,white 68%,yellow);
+}
+.backgroundGradient9 {
+    background: radial-gradient(circle,black 20%,white 68%);
+}
+.backgroundGradient10 {
+    width: 400px;
+    height: 300px;
+    background-image:linear-gradient(135deg, red 141.4213562373095px, yellow 282.842712474619px);
+}
