@@ -176,3 +176,15 @@
 .info {
     background-color: #2196f3 ;
 }
+@keyframes pound {
+    from { transform: none; }
+    to { transform: scale(1.2); }
+}
+.animateWrap{
+    width: 300px;
+    margin: 20px auto;
+}
+.animateWrap img{
+    width: 100%;
+    animation: pound .8s infinite;
+}
