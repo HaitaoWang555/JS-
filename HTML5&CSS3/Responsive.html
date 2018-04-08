@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>响应式</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            min-width: 100vw;
+            min-height: 100vh;
+            color: white;
+            font-size: 64px;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        @media screen and (min-width: 1200px) {
+            .main {
+                background: red;
+            }
+        }
+
+        @media screen and (min-width: 900px) and (max-width: 1200px) {
+            .main {
+                background: green;
+            }
+        }
+
+        @media screen and (min-width: 600px) and (max-width: 900px) {
+            .main {
+                background: yellow;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .main {
+                background: gray;
+            }
+        }
+    </style>
+</head>
+
+<body onresize="initMain()">
+    <div class="main"></div>
+</body>
+<script>
+
+    var main = document.querySelector('.main')
+    function initMain() {
+        if (main.clientWidth > 1200) {
+            main.innerHTML = '在页面宽度> 1200px 时页面背景为红色 '
+        } else if (900 < main.clientWidth && main.clientWidth <= 1200) {
+            main.innerHTML = '在页面1200px>=宽度> 900px  时页面背景为绿色'
+        } else if (600 < main.clientWidth && main.clientWidth <= 900) {
+            main.innerHTML = '在页面900px>=宽度> 600px  时页面背景为黄色'
+        } else if (main.clientWidth < 600) {
+            main.innerHTML = '宽度<=600px 背景为灰色'
+        }
+    }
+    initMain()
+</script>
+
+</html>
