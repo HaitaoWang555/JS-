@@ -1,5 +1,5 @@
 
-define(function(){
+
   var Waterfall = (function($wrap){
     function WaterfallLayout($wrap){
       this.$wrap = $wrap;
@@ -89,5 +89,3 @@ define(function(){
       }
     }
   })()
-  return Waterfall
-})

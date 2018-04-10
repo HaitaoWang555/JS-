@@ -1,4 +1,4 @@
-define(function(){
+
 	var Gotop = (function(){
 		function Goup($ct){
 			this.$ct = $ct
@@ -33,9 +33,6 @@ define(function(){
 				new Goup($ct)
 			}
 		}
-	})()
-	return Gotop
-	}
-);
-	
+	})
+
 

@@ -1,6 +1,6 @@
 
 //模块化
-define(function(){
+
   var Carousel = (function(){
 
     function Slider(slider,data) {
@@ -83,8 +83,7 @@ define(function(){
       }
     }
   })()  
-  return Carousel
-})
+
 
 
 

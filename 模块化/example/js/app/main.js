@@ -1,5 +1,5 @@
 
-define(function(require){
+
     var $ = require('jquery')
     var carousel = require('mod/carousel');
     var Gotop = require('mod/goTop');
@@ -20,7 +20,7 @@ define(function(require){
             carousel.initCarousel(C1,data.imgLinks);
           })
       }
-})
+
 
 
 
