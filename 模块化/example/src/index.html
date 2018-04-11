@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="scss/app.css">
   <title>module_example</title>
 </head>
 <body>
@@ -17,21 +17,10 @@
     </ul>
   <!-- 回到顶部 -->
   </div>
-  <script  src="js/lab/require.min.js"></script>
-
-  <script>
-    requirejs.config({
-        baseUrl: 'js/lab',
-        paths: {
-            "jquery" : "./jquery-2.0.3.min",
-            app: '../app',
-            mod:'../mod'
-        }
-    });
-  
-    // 加载入口模块
-    requirejs(['app/main']);
-  </script>
-  
+  <script src="js/lab/jquery-2.0.3.min.js"></script>
+  <script src="js/mod/carousel.js"></script>
+  <script src="js/mod/goTop.js"></script>
+  <script src="js/mod/waterFall.js"></script>
+  <script src="js/app/main.js"></script>
 </body>
 </html>

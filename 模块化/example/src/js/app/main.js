@@ -1,13 +1,7 @@
 
-
-    var $ = require('jquery')
-    var carousel = require('mod/carousel');
-    var Gotop = require('mod/goTop');
-    var waterFall = require('mod/waterFall');
-
     $(function(){
         getImgsBanner();
-        waterFall.initWaterfall($('.picture_wrap'))
+        Waterfall.initWaterfall($('.picture_wrap'))
         Gotop.init($('html'))
       })
       
@@ -17,7 +11,7 @@
         )
           .then(function(data) {
             var C1 = $(".carousel_full");
-            carousel.initCarousel(C1,data.imgLinks);
+            Carousel.initCarousel(C1,data.imgLinks);
           })
       }
 
