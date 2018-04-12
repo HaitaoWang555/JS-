@@ -9911,6 +9911,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var initHtml = '<div class="example_wrap"><div class="carousel_full"></div><ul class="picture_wrap"></ul></div>'
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('body').append(initHtml)
   getImgsBanner();
   _mod_waterFall_js__WEBPACK_IMPORTED_MODULE_2___default.a.initWaterfall(jquery__WEBPACK_IMPORTED_MODULE_1___default()('.picture_wrap'))
   _mod_goTop_js__WEBPACK_IMPORTED_MODULE_3___default.a.init(jquery__WEBPACK_IMPORTED_MODULE_1___default()('html'))

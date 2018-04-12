@@ -1,5 +1,6 @@
 const path = require('path');
-webpack = require("webpack"),
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 	module.exports = {
 		entry: './src/js/app/main.js',
@@ -8,7 +9,10 @@ webpack = require("webpack"),
 			path: path.resolve(__dirname, 'dist')
 		},
 		devtool: 'source-map',
-		plugins: [
+		plugins: [			
+		  new HtmlWebpackPlugin({
+			  title: 'module_example'
+			}),
 			new webpack.ProvidePlugin({
 				$: 'jquery'
 			})
