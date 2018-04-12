@@ -9,7 +9,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 			filename: 'bundle.js',
 			path: path.resolve(__dirname, 'dist')
 		},
-		devtool: 'source-map',
 		plugins: [			
 			new CleanWebpackPlugin(['dist']),
 		  new HtmlWebpackPlugin({
