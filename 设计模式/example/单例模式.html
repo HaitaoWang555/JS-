@@ -1,0 +1,30 @@
+<script type="text/javascript">
+	var People = (function () {
+		var instance;
+		function init(name) {
+			//define private methods and properties
+			//do something
+			return {
+				//define public methods and properties
+				name:name
+			};
+		}
+		return {
+			createPeople: function (name) {
+				if (!instance) {
+					instance = init(name);
+				}
+				console.log(instance);
+			}
+		};
+	}());
+	var obj1 = People.createPeople('123');
+	var obj2 = People.createPeople('abc');
+	/*
+		闭包
+		作用域通过函数体现的
+		闭包隐藏变量 模块化
+		词法作用域体现
+	*/
+</script>
+
