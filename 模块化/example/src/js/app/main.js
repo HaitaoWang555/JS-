@@ -1,9 +1,11 @@
-
-    $(function(){
+import $ from 'jquery';
+import Waterfall  from './../mod/waterFall.js';
+import Gotop  from './../mod/goTop.js';
+import Carousel  from './../mod/carousel.js';
         getImgsBanner();
         Waterfall.initWaterfall($('.picture_wrap'))
         Gotop.init($('html'))
-      })
+
       
       function getImgsBanner() {
         $.get(
