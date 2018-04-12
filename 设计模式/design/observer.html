@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+		<style type="text/css">
+			.demo{
+				border:1px solid coral;
+				padding:30px;
+				margin:5px;
+			}
+			#ps-btn{
+				background: coral;
+				cursor: pointer
+			}
+		</style>
+	</head>
+	<body>
+		<div>observer设计模式</div>
+
+		<div class="demo pub-sub">
+			observer订阅发布举例子
+			<div id="ps-btn">
+				加上数据
+				<span>0</span>
+			</div>
+			<div id="pub-sub">
+				数据总和为 ---- <span>0</span>
+			</div>
+			<script type="text/javascript">
+				var Observerable = function() {
+					this.observers = [];
+					this.data = [];
+				};
+				Observerable.prototype.subscribe = function(ObserverFn) {
+					this.observers.push(ObserverFn)
+				};
+				Observerable.prototype.digest = function(ObserverFn) {
+					var data = this.data;
+					this.observers.forEach(function(observer){
+						observer(data);
+					});
+				};
+			</script>
+			<script type="text/javascript">
+				// 观察者模式 ==> 数据源一致 ==> 通知所有注册该数据源的回调处理
+				var observer1 = function(data) {
+				     var value = data.reduce(function(pre,cur){
+						 	return pre+cur
+						 },0);
+				     $('#pub-sub span').html('数据总和为' + value);
+				};
+				var observer2 = function(data){
+				      $('#ps-btn span').html(data[data.length - 1]);
+				};
+				var observerable_inst = new Observerable();
+				observerable_inst.subscribe(observer1);
+				observerable_inst.subscribe(observer2);
+				observerable_inst.change = function(val) {
+				  this.data.push(val);
+				  observerable_inst.digest();
+				};
+				$('#ps-btn').click(function(){
+					var randomNum = Math.floor(Math.random() * 100);
+					observerable_inst.change(randomNum);
+				})
+			</script>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+		<style type="text/css">
+			.demo{
+				border:1px solid coral;
+				padding:30px;
+				margin:5px;
+			}
+		</style>	
+		<script type="text/javascript">
+				var PubSub = function(){
+				  this.eventPool = {}; //存储事件映射表
+				};
+				PubSub.prototype.off = function(topicName){
+				    delete this.eventPool[topicName]
+				};
+				PubSub.prototype.on = function(topicName,callback){
+				    var  topic = this.eventPool[topicName] ; 
+				    if(!topic){
+				        this.eventPool[topicName] =[] 
+				    }
+				    this.eventPool[topicName].push(callback)
+				}
+				PubSub.prototype.trigger = function(){
+				    var _arg = [].slice.call(arguments);
+				    var topicName=_arg.shift();
+				    var callbackArg = _arg;
+				    var topicCallback = this.eventPool[topicName]
+				    if(topicCallback){
+				         topicCallback.forEach(function(callback){
+				            callback.apply(this,callbackArg)
+				         });
+				    }
+				};
+
+		</script>
+	</head>
+	<body>
+		<div>pub-sub设计模式</div>
+		<div class="demo pub-sub">
+			pub-sub订阅发布举例子
+			<button id="ps-btn">
+				点击从
+				<span>0</span>
+				开始进行加法计算
+			</button>
+			<div id="pub-sub">
+				数据总和为 ---- <span>0</span>
+			</div>
+			<script type="text/javascript">
+				var pubSub = new PubSub();
+				pubSub.on('click',function(data){
+					$('#ps-btn span').html(data[data.length - 1]);
+				});
+				pubSub.on('click',function(data){
+					var value = data.reduce(function(pre,cur){return pre+cur},0)
+					$('#pub-sub span').html(value);
+				});
+				var data = [0];
+				$('#ps-btn').click(function(){
+					var randomNum = Math.floor(Math.random() * 100);
+					data.push(randomNum);
+					pubSub.trigger('click',data);
+				})
+			</script>
+		</div>
+	</body>
+</html>
