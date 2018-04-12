@@ -1,8 +1,8 @@
-import './../../scss/app.scss';
+import 'appScss';
 import $ from 'jquery';
-import Waterfall  from './../mod/waterFall.js';
-import Gotop  from './../mod/goTop.js';
-import Carousel  from './../mod/carousel.js';
+import Waterfall  from 'waterFall';
+import Gotop  from 'goTop';
+import Carousel  from 'carousel';
 
 var initHtml = '<div class="example_wrap"><div class="carousel_full"></div><ul class="picture_wrap"></ul></div>'
   $('body').prepend(initHtml)

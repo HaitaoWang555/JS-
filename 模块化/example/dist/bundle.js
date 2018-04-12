@@ -9895,16 +9895,16 @@ module.exports = function (css) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../scss/app.scss */ "./src/scss/app.scss");
-/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_app_scss__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var appScss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! appScss */ "./src/scss/app.scss");
+/* harmony import */ var appScss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(appScss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _mod_waterFall_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../mod/waterFall.js */ "./src/js/mod/waterFall.js");
-/* harmony import */ var _mod_waterFall_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_mod_waterFall_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _mod_goTop_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../mod/goTop.js */ "./src/js/mod/goTop.js");
-/* harmony import */ var _mod_goTop_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_mod_goTop_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _mod_carousel_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../mod/carousel.js */ "./src/js/mod/carousel.js");
-/* harmony import */ var _mod_carousel_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_mod_carousel_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var waterFall__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! waterFall */ "./src/js/mod/waterFall.js");
+/* harmony import */ var waterFall__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(waterFall__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var goTop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! goTop */ "./src/js/mod/goTop.js");
+/* harmony import */ var goTop__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(goTop__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var carousel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! carousel */ "./src/js/mod/carousel.js");
+/* harmony import */ var carousel__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(carousel__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -9912,10 +9912,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var initHtml = '<div class="example_wrap"><div class="carousel_full"></div><ul class="picture_wrap"></ul></div>'
-  jquery__WEBPACK_IMPORTED_MODULE_1___default()('body').append(initHtml)
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('body').prepend(initHtml)
   getImgsBanner();
-  _mod_waterFall_js__WEBPACK_IMPORTED_MODULE_2___default.a.initWaterfall(jquery__WEBPACK_IMPORTED_MODULE_1___default()('.picture_wrap'))
-  _mod_goTop_js__WEBPACK_IMPORTED_MODULE_3___default.a.init(jquery__WEBPACK_IMPORTED_MODULE_1___default()('html'))
+  waterFall__WEBPACK_IMPORTED_MODULE_2___default.a.initWaterfall(jquery__WEBPACK_IMPORTED_MODULE_1___default()('.picture_wrap'))
+  goTop__WEBPACK_IMPORTED_MODULE_3___default.a.init(jquery__WEBPACK_IMPORTED_MODULE_1___default()('html'))
 
 
 function getImgsBanner() {
@@ -9924,7 +9924,7 @@ function getImgsBanner() {
   )
     .then(function(data) {
       var C1 = jquery__WEBPACK_IMPORTED_MODULE_1___default()(".carousel_full");
-      _mod_carousel_js__WEBPACK_IMPORTED_MODULE_4___default.a.initCarousel(C1,data.imgLinks);
+      carousel__WEBPACK_IMPORTED_MODULE_4___default.a.initCarousel(C1,data.imgLinks);
     })
 }
 

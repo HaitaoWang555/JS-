@@ -20,6 +20,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 				$: 'jquery'
 			})
 		],
+		resolve:{
+			alias:{
+				carousel: path.resolve(__dirname,'src/js/mod/carousel.js'),
+				goTop: path.resolve(__dirname,'src/js/mod/goTop.js'),
+				waterFall: path.resolve(__dirname,'src/js/mod/waterFall.js'),
+				appScss: path.resolve(__dirname,'src/scss/app.scss')
+			}
+		},
 		module: {
 			rules: [
 				{
